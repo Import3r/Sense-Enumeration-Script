@@ -1,2 +1,6 @@
 # Sense-Enumeration-Tool
-'Sense' is a target discovery and enumeration tool, that utilizes 'nmap' along 'gobuster' for automated, initial scans of a given target.
+'Sense' is a simple bash script that utilizes 'nmap' along 'gobuster' for automated, initial scanning of a given target.
+
+The tool was created to handle repetetive tasks that testers conduct when initially enumerating. currently it handles the most basic tasks of what I personally use, and I'm looking to expand its functionality in the future.
+
+Hope you find it useful! all feedback of any sort is appreciated!
