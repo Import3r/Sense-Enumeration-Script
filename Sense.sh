@@ -18,6 +18,29 @@ trap Terminate INT; function Terminate() { kill -- -$$; }
 
 
 
+#### checks for the existense of needed tools (nmap, gobuster):
+
+gobus_installed=$(which gobuster)
+
+nmap_installed=$(which nmap)
+
+if ! [[ $gobus_installed && $nmap_installed ]]
+then
+	echo -e "\\n\\n\\tHi There! you are almost ready to run 'Sense', but the following tools are missing:\\n\\n"
+	
+	[[ $gobus_installed ]] || message+="\\t==>	gobuster [not installed]\\n\\n"
+
+	[[ $nmap_installed ]] || message+="\\t==>	nmap [not installed]\\n\\n"
+
+	echo -e "$message"
+
+	echo -e "\\tPlease make sure they exist in the \$PATH after you install. Good Luck!\\n\\n"
+
+	exit 1
+fi
+
+
+
 ##### checks file names to be valid. exits if not:
 
 ! [[ -d  $path ]] && { echo -e "\\n\\n Default path for the results is invalid. please edit the script to fix this.\\n\\n"; exit 1; }
@@ -37,6 +60,7 @@ then
 	echo -e "\\t######################################################"
 	
 	echo -e "\\n\\t  Usage: '$0' <target_nickname>  <target_ip> \\n\\n"
+
 	exit 1
 fi
 
@@ -166,7 +190,7 @@ wait
 
 echo -e "\\n ==> Other scans finished.\\n"; sleep 1;
 
-echo -e "\\n \\n \\n \\n \\n \\n \\n scan complete. Results can be found in '$directory'.\\n\\n";
+echo -e "\\n \\n \\n \\n \\n \\n \\n scan complete. Results can be found in '$directory'. you can edit the script to change the default path.\\n\\n";
 
 exit 0
 
